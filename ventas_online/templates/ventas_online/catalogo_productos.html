@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Catálogo de Productos{% endblock %}
+{% block content %}
+<h1 class="mb-4">Catálogo de Productos</h1>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<div class="row">
+    {% for producto in productos %}
+    <div class="col-md-4 mb-3">
+        <div class="card" style="background-color: #2b2b2b; color: #f5f5f5;">
+            <div class="card-body">
+                <h5 class="card-title">{{ producto.nombre }}</h5>
+                <p class="card-text">{{ producto.descripcion }}</p>
+                <p><strong>Precio:</strong> {{ producto.precio }} €</p>
+                <p><strong>Stock:</strong> {{ producto.stock }}</p>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No hay productos disponibles.</p>
+    {% endfor %}
+</div>
+<a href="{% url 'ventas_online:realizar_pedido' %}" class="btn btn-primary mt-3">Realizar Pedido</a>
+{% endblock %}

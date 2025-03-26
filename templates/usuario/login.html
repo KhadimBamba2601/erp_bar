@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Iniciar Sesión{% endblock %}
+{% block content %}
+<h1 class="mb-4">Iniciar Sesión</h1>
+{% if form.errors %}
+    <div class="alert alert-danger">Usuario o contraseña incorrectos.</div>
+{% endif %}
+<form method="post" class="mb-4">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">Usuario</label>
+        {{ form.username }}
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Contraseña</label>
+        {{ form.password }}
+    </div>
+    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+</form>
+<p>¿No tienes cuenta? <a href="{% url 'registro' %}" class="text-dorado">Regístrate aquí</a></p>
+{% endblock %}
+<style>
+    .text-dorado { color: #d4af37; }
+    .form-label { color: #f5f5f5; }
+    input { background-color: #2b2b2b; color: #f5f5f5; border: 1px solid #d4af37; }
+</style>

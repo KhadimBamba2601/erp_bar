@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}Lista de Pedidos{% endblock %}
+{% block content %}
+<h1 class="mb-4">Lista de Pedidos</h1>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Total</th>
+            <th>Estado</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for pedido in pedidos %}
+        <tr>
+            <td>{{ pedido.id }}</td>
+            <td>{{ pedido.cliente.nombre }}</td>
+            <td>{{ pedido.fecha }}</td>
+            <td>{{ pedido.total }} €</td>
+            <td>{{ pedido.estado }}</td>
+            <td><a href="{% url 'ventas_online:actualizar_pedido' pedido.id %}" class="btn btn-primary btn-sm">Actualizar</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No hay pedidos disponibles.</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

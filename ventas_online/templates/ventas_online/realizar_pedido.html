@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Realizar Pedido{% endblock %}
+{% block content %}
+<h1 class="mb-4">Realizar Pedido</h1>
+<form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" required>
+    </div>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input type="email" class="form-control" id="email" name="email" required>
+    </div>
+    <div class="mb-3">
+        <label for="telefono" class="form-label">Teléfono</label>
+        <input type="text" class="form-control" id="telefono" name="telefono">
+    </div>
+    <div class="mb-3">
+        <label for="direccion" class="form-label">Dirección</label>
+        <textarea class="form-control" id="direccion" name="direccion" required></textarea>
+    </div>
+    <h3>Productos</h3>
+    {% for producto in productos %}
+    <div class="mb-3">
+        <label>{{ producto.nombre }} ({{ producto.precio }} € - Stock: {{ producto.stock }})</label>
+        <input type="number" class="form-control" name="cantidades" min="0" max="{{ producto.stock }}" placeholder="Cantidad">
+        <input type="hidden" name="productos" value="{{ producto.id }}">
+    </div>
+    {% endfor %}
+    <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+</form>
+{% endblock %}
+<style>
+    .form-control { background-color: #2b2b2b; color: #f5f5f5; border: 1px solid #d4af37; }
+</style>

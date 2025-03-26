@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+<h1 class="mb-4">Crear Cuenta</h1>
+<form method="post" class="mb-4">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="username" class="form-label">Usuario</label>
+        {{ form.username }}
+        <small class="form-text text-muted">Mínimo 150 caracteres, solo letras, números y @/./+/-/_</small>
+    </div>
+    <div class="mb-3">
+        <label for="password1" class="form-label">Contraseña</label>
+        {{ form.password1 }}
+    </div>
+    <div class="mb-3">
+        <label for="password2" class="form-label">Confirmar Contraseña</label>
+        {{ form.password2 }}
+    </div>
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>
+<p>¿Ya tienes cuenta? <a href="{% url 'login' %}" class="text-dorado">Inicia sesión aquí</a></p>
+{% endblock %}
+<style>
+    .text-dorado { color: #d4af37; }
+    .form-label { color: #f5f5f5; }
+    input { background-color: #2b2b2b; color: #f5f5f5; border: 1px solid #d4af37; }
+</style>

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Editar Producto {{ producto.nombre }}{% endblock %}
+{% block content %}
+<h1 class="mb-4">Editar Producto {{ producto.nombre }}</h1>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert {% if message.tags == 'success' %}alert-success{% else %}alert-danger{% endif %}">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+</form>
+{% endblock %}
+<style>
+    .form-control, select { background-color: #2b2b2b; color: #f5f5f5; border: 1px solid #d4af37; }
+</style>

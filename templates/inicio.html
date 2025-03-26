@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}Inicio - ERP Bar{% endblock %}
+{% block content %}
+<h1 class="mb-4">Bienvenido al ERP del Bar</h1>
+{% if user.is_authenticated %}
+    <p>Usuario conectado: {{ user.username }}</p>
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: #2b2b2b; color: #f5f5f5;">
+                <div class="card-body">
+                    <h5 class="card-title">Productos Totales</h5>
+                    <p class="card-text">{{ productos_total }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: #2b2b2b; color: #f5f5f5;">
+                <div class="card-body">
+                    <h5 class="card-title">Stock Bajo (<10)</h5>
+                    <p class="card-text">{{ stock_bajo }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: #2b2b2b; color: #f5f5f5;">
+                <div class="card-body">
+                    <h5 class="card-title">Pedidos Pendientes</h5>
+                    <p class="card-text">{{ pedidos_pendientes }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: #2b2b2b; color: #f5f5f5;">
+                <div class="card-body">
+                    <h5 class="card-title">Ingresos Totales</h5>
+                    <p class="card-text">{{ ingresos_total }} €</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card" style="background-color: #2b2b2b; color: #f5f5f5;">
+                <div class="card-body">
+                    <h5 class="card-title">Envíos en Tránsito</h5>
+                    <p class="card-text">{{ envios_en_transito }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% else %}
+    <p>Inicia sesión para acceder a los módulos.</p>
+{% endif %}
+{% endblock %}
